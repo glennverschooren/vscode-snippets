@@ -1,1 +1,30 @@
-{}
+{
+	"Media Query": {
+		"prefix": "mq",
+		"body": [
+			"@media (max-width: ${1:\\$screen-sm}) {",
+				"\t$2",
+				"}"
+			],
+			"description": "Media Query"
+	},
+	"SHD - Media Query": {
+		"prefix": "mqm",
+		"body": [
+			"@include at(${1:\\$screen-sm}) {",
+				"\t$2",
+				"}"
+			],
+			"description": "Media query mixin"
+		},
+	"Import": {
+		"prefix": "imp",
+		"body": "@import \"$1\";$0",
+		"description": "Import"
+	},
+	"Include": {
+		"prefix": "inc",
+		"body": "@include(\"$1\");$0",
+		"description": "Include"
+	}
+}
