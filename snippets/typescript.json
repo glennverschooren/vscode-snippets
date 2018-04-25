@@ -1,0 +1,167 @@
+{
+    "console.log": {
+        "prefix": "lg",
+        "body": [
+            "console.log(\"$1\", $2); // tslint:disable-line no-console"
+        ],
+        "description": "log something to the console"
+    },
+    "debugger": {
+        "prefix": "dbg",
+        "body": [
+            "debugger; // tslint:disable-line no-debugger"
+        ],
+        "description": "insert debugger"
+    },
+    "ng-module": {
+        "prefix": "ng-module",
+        "body": [
+            "import {",
+            "\tNgModule,$1",
+            "} from \"@angular/core\";\n",
+            "@NgModule({",
+            "\timports: [$2],",
+            "\tdeclarations: [$3],",
+            "\tentryComponents: [$4],",
+            "\tproviders: [$5],",
+            "\texports: [$6],",
+            "})",
+            "export class $7Module {}\n"
+        ],
+        "description": "create a new Angular component"
+    },
+    "ng-component": {
+        "prefix": "ng-comp",
+        "body": [
+            "import {",
+            "\tComponent,$1",
+            "} from \"@angular/core\";\n",
+            "@Component({",
+            "\tselector: \"$2\",",
+            "\ttemplateUrl: \"./$3.component.html\",",
+            "})",
+            "export class $4Component {}\n"
+        ],
+        "description": "create a new Angular component"
+    },
+    "ng-container": {
+        "prefix": "ng-container",
+        "body": [
+            "import {",
+            "\tComponent,$1",
+            "} from \"@angular/core\";\n",
+            "@Component({",
+            "\tselector: \"$2\",",
+            "\ttemplateUrl: \"./$3.container.html\",",
+            "})",
+            "export class $4Container {}\n"
+        ],
+        "description": "create a new Angular component"
+    },
+    "ng-page": {
+        "prefix": "ng-page",
+        "body": [
+            "import {",
+            "\tComponent,$1",
+            "} from \"@angular/core\";\n",
+            "@Component({",
+            "\tselector: \"$2\",",
+            "\ttemplateUrl: \"./$3.page.html\",",
+            "})",
+            "export class $4Page {}\n"
+        ],
+        "description": "create a new Angular component"
+    },
+    "ng-service": {
+        "prefix": "ng-service",
+        "body": [
+            "import {",
+            "Injectable,$1",
+            "} from \"@angular/core\";\n",
+            "@Injectable()",
+            "export class $2Service {}\n"
+        ],
+        "description": "create a new Angular service"
+    },
+    "ng-cva": {
+        "prefix": "ng-cva",
+        "body": [
+            "import {",
+            "\tComponent,",
+            "\tforwardRef,",
+            "\tOnDestroy,",
+            "} from \"@angular/core\";\n",
+            "import {",
+            "\tFormBuilder,",
+            "\tFormGroup,",
+            "\tControlValueAccessor,",
+            "\tNG_VALUE_ACCESSOR,",
+            "} from \"@angular/forms\";\n",
+            "import { Subscription } from \"rxjs/Subscription\";\n",
+            "@Component({",
+            "\tselector: \"$1\",",
+            "\ttemplateUrl: \"$1.component.html\",",
+            "\tproviders: [{",
+            "\t\tprovide: NG_VALUE_ACCESSOR,",
+            "\t\tuseExisting: forwardRef(() => $2Component),",
+            "\t\tmulti: true,",
+            "\t}],",
+            "})",
+            "export class $2Component implements ControlValueAccessor, OnDestroy {",
+            "\tpublic form: FormGroup;",
+            "\tprivate formsubscription: Subscription;",
+            "\tprivate updateFromModel: boolean = false;",
+            "\tconstructor(",
+            "\t\tprivate fb: FormBuilder",
+            "\t) {",
+            "\t\tthis.form = this.fb.group({",
+            "\t\t\tval: \"\",",
+            "\t\t});",
+            "\t\tthis.form.controls.val.valueChanges",
+            "\t\t\t.subscribe((val: string) => {",
+            "\t\t\t\tif (this.updateFromModel) {",
+            "\t\t\t\t\tthis.updateFromModel = false;",
+            "\t\t\t\t\treturn;",
+            "\t\t\t\t}",
+            "\t\t\t\tthis.updateModel(val);",
+            "\t\t\t});",
+            "\t}",
+            "\tpublic ngOnDestroy(): void {",
+            "\t\tif (typeof this.formsubscription !== \"undefined\") {",
+            "\t\t\tthis.formsubscription.unsubscribe();",
+            "\t\t}",
+            "\t}",
+            "\tpublic writeValue(value: any): void {",
+            "\t\tthis.updateFromModel = true;",
+            "\t\tthis.form.controls.val.setValue(value);",
+            "\t}",
+            "\tpublic registerOnChange(onChange: (_) => any): void {",
+            "\t\tthis.updateModel = onChange;",
+            "\t}",
+            "\tpublic registerOnTouched() {} // tslint:disable-line:no-empty",
+            "\tprivate updateModel: (_) => any = () => {}; // tslint:disable-line:no-empty",
+            "}"
+        ]
+    },
+    "import": {
+        "prefix": "import",
+        "body": [
+            "import { $2 } from \"$1\";"
+        ],
+        "description": "import ... from ..."
+    },
+    "import-sub": {
+        "prefix": "import-sub",
+        "body": [
+            "import { Subscription } from \"rxjs/Subscription\";"
+        ],
+        "description": "import Subscription from rxjs"
+    },
+    "import_": {
+        "prefix": "import_",
+        "body": [
+            "import * as $1 from \"lodash.$1\";"
+        ],
+        "description": "import something from Lodash"
+    }
+}
