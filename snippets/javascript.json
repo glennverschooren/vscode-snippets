@@ -1,1 +1,16 @@
-{}
+{
+    "Log in console": {
+        "prefix": "log",
+        "body": [
+            "console.log(\"$1\", $2); // eslint-disable-line no-console"
+        ],
+        "description": "Log something in the console without annoying the linter"
+    },
+    "Debugger": {
+        "prefix": "debug",
+        "body": [
+            "debugger; // eslint-disable-line no-debugger"
+        ],
+        "description": "Add a debugger without annoying the linter"
+    }
+}
