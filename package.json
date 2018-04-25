@@ -1,0 +1,21 @@
+{
+    "name": "shd-vscode-snippets",
+    "displayName": "Studio Hyperdrive VSCode Snippets",
+    "description": "VSCode snippets for Studio Hyperdrive",
+    "version": "0.0.1",
+    "publisher": "studio-hyperdrive",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/javascript.json"
+            }
+        ]
+    }
+}
